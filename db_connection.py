@@ -1,12 +1,13 @@
 from pymongo import MongoClient
 from dotenv import load_dotenv
+import streamlit as st
 import os
 
 load_dotenv()
 
 def connect_to_db(database):
     try:
-        mongodb_uri = os.getenv('MONGODB_URI')
+        mongodb_uri = st.secrets["MONGODB_URI"]
         client = MongoClient(mongodb_uri)
         db = client[database]
         return db

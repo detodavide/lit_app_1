@@ -10,8 +10,7 @@ def fetch_logs():
         return logs
 
 if __name__ == "__main__":
-    ip = get_client_ip()
-    st.write(f"The current IP address of the Streamlit app is: {ip}")
+
     if st.button('Get Data / Refresh Data'):
         logs = fetch_logs()
 

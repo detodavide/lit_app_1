@@ -15,7 +15,6 @@ def app():
 
         if logs:
             for log in logs:
-                print(log)
                 st.write(f"{log['timestamp']}  -  {log['level']}  -  {log['message']}")
         else:
             st.write("Failed to retrieve data from the database.")

@@ -11,7 +11,9 @@ __pycache__/
 *.so
 
 #env
+secrets.toml
 djorgeenv/
+.streamlit/
 
 # Distribution / packaging
 .Python

@@ -9,7 +9,7 @@ def fetch_logs():
         logs = botLogs.find({}, {"timestamp": 1, "level": 1, "message": 1}).sort("timestamp", DESCENDING).limit(30)
         return logs
 
-if __name__ == "__main__":
+def app():
 
     if st.button('Get Data / Refresh Data'):
         logs = fetch_logs()

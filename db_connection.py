@@ -1,8 +1,5 @@
 from pymongo import MongoClient
-from dotenv import load_dotenv
 import streamlit as st
-
-load_dotenv()
 
 def connect_to_db(database):
     try:

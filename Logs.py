@@ -1,5 +1,5 @@
 import streamlit as st 
-from db_connection import connect_to_db, get_ip_address
+from db_connection import connect_to_db, get_client_ip
 from pymongo import DESCENDING  # Import DESCENDING from pymongo
 
 def fetch_logs():
@@ -10,7 +10,7 @@ def fetch_logs():
         return logs
 
 if __name__ == "__main__":
-    ip = get_ip_address()
+    ip = get_client_ip()
     st.write(f"The current IP address of the Streamlit app is: {ip}")
     if st.button('Get Data / Refresh Data'):
         logs = fetch_logs()

@@ -1,5 +1,5 @@
 import streamlit as st 
-from db_connection import connect_to_db, get_client_ip
+from db_connection import connect_to_db
 from pymongo import DESCENDING  # Import DESCENDING from pymongo
 
 def fetch_logs():

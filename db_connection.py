@@ -2,6 +2,7 @@ from pymongo import MongoClient
 from dotenv import load_dotenv
 import streamlit as st
 import os
+import socket
 
 load_dotenv()
 
@@ -14,9 +15,6 @@ def connect_to_db(database):
     except Exception as e:
         print(f"An error occurred while connecting to the database: {str(e)}")
         return None
-    
-import socket
-import streamlit as st
 
 def get_ip_address():
     hostname = socket.gethostname()

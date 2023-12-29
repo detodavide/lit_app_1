@@ -10,12 +10,12 @@ def fetch_logs():
         return logs
 
 def app():
-
     if st.button('Get Data / Refresh Data'):
         logs = fetch_logs()
 
         if logs:
             for log in logs:
+                print(log)
                 st.write(f"{log['timestamp']}  -  {log['level']}  -  {log['message']}")
         else:
             st.write("Failed to retrieve data from the database.")

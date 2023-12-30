@@ -19,7 +19,7 @@ class MultiApp:
     def run():
         with st.sidebar:
             app = option_menu(
-                menu_title="Datass",
+                menu_title="DiscoData",
                 options=['Bot Logs', "Requests", "Profile Spider", "Collection Spider"],
                 default_index=1,
                 styles={

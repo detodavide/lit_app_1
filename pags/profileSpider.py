@@ -10,18 +10,18 @@ def display_dataframe_with_links(df):
     for index, row in df.iterrows():
         st.markdown(f"[Link {index}]({row['url']})")
 
-def fetch_profile_names():
+def fetch_profile_names(username_requester):
     db = connect_to_db("DiscoData")
     if db is not None:
         profilerSpider = db.profilerSpider
-        distinct_profiles = profilerSpider.distinct('profile_name')
+        distinct_profiles = profilerSpider.distinct('profile_name', {'username_requester': username_requester})
         return distinct_profiles
 
-def fetch_data(profile_name):
+def fetch_data(profile_name, username_requester):
     db = connect_to_db("DiscoData")
     if db is not None:
         profilerSpider = db.profilerSpider
-        logs = profilerSpider.find({'profile_name': profile_name}, {'_id': 0, 'profile_name': 0, 'username_requester': 0})
+        logs = profilerSpider.find({'profile_name': profile_name, 'username_requester': username_requester}, {'_id': 0, 'profile_name': 0, 'username_requester': 0})
         return logs
 
 def filter_data(df, for_sale_threshold, have_threshold, want_threshold):
@@ -33,7 +33,7 @@ def filter_data(df, for_sale_threshold, have_threshold, want_threshold):
 def app():
     st.header("Profile Spider Search")
     st.subheader('Filter Data Options')
-    profile_names = fetch_profile_names()
+    profile_names = fetch_profile_names(st.secrets["USER_REQUESTER"])
     selected_profile = st.selectbox('Select Profile Name', profile_names)
     have_threshold = st.slider("Select threshold for 'have'", min_value=0, max_value=400, value=100)
     want_threshold = st.slider("Select threshold for 'want'", min_value=0, max_value=400, value=100)
@@ -42,7 +42,7 @@ def app():
     filter_button = st.button('Filter Data')
 
     if filter_button:
-        data = fetch_data(selected_profile)
+        data = fetch_data(selected_profile, st.secrets["USER_REQUESTER"])
 
         if data:
             data_list = list(data)

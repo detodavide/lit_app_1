@@ -42,7 +42,7 @@ def app():
     filter_button = st.button('Filter Data')
 
     if filter_button:
-        data = fetch_data(selected_profile, have_threshold)
+        data = fetch_data(selected_profile)
 
         if data:
             data_list = list(data)

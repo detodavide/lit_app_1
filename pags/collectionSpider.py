@@ -3,7 +3,7 @@ from db_connection import connect_to_db
 import pandas as pd
 
 def fetch_data(profile_name, username_requester):
-    db = connect_to_db("DiscoScraper")
+    db = connect_to_db("DiscoData")
     if db is not None:
         collectionerSpider = db.CollectionerSpider
         logs = collectionerSpider.find({'profile_name': profile_name, 'username_requester': username_requester}, {'_id': 0, 'profile_name': 0, 'username_request': 0})
@@ -14,7 +14,7 @@ def filter_data(df, for_sale_threshold):
     return filtered_df
 
 def fetch_profile_names(username_requester):
-    db = connect_to_db("DiscoScraper")
+    db = connect_to_db("DiscoData")
     if db is not None:
         collectionerSpider = db.CollectionerSpider
         distinct_profiles = collectionerSpider.distinct('profile_name', {'username_request': username_requester})

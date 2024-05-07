@@ -13,14 +13,14 @@ def display_dataframe_with_links(df):
 def fetch_profile_names(username_requester):
     db = connect_to_db("DiscoData")
     if db is not None:
-        profilerSpider = db.profilerSpider
+        profilerSpider = db.ProfileSpider
         distinct_profiles = profilerSpider.distinct('profile_name', {'username_requester': username_requester})
         return distinct_profiles
 
 def fetch_data(profile_name, username_requester):
     db = connect_to_db("DiscoData")
     if db is not None:
-        profilerSpider = db.profilerSpider
+        profilerSpider = db.ProfileSpider
         logs = profilerSpider.find({'profile_name': profile_name, 'username_requester': username_requester}, {'_id': 0, 'profile_name': 0, 'username_requester': 0})
         return logs
 
